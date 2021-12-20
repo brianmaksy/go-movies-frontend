@@ -10,6 +10,12 @@ export default class Admin extends Component {
 
     // nts - cf react life cycle 
     componentDidMount() {
+        if (this.props.jwt === "") {
+            this.props.history.push({
+                pathname: "/login",
+            });
+            return;
+        }
         // remote server, and get list of movies 
         fetch("http://localhost:4000/v1/movies")
         //   .then((repsonse) => repsonse.json())
