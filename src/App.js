@@ -9,6 +9,8 @@ import OneMovie from './components/OneMovie'
 import OneGenre from './components/OneGenre'
 import EditMovie from './components/EditMovie'
 import Login from './components/Login'
+import GraphQL from './components/GraphQL'
+import OneMovieGraphQL from 'components/OneMovieGraphQL';
 
 export default class App extends Component {
 
@@ -91,6 +93,9 @@ export default class App extends Component {
                       </li>
                     </Fragment>
                   )}
+                  <li className="list-group-item">
+                    <Link to="/graphql">GraphQL</Link>
+                  </li>
                 </ul>
                 <pre>
                   {JSON.stringify(this.state, null, 3)}
@@ -102,6 +107,7 @@ export default class App extends Component {
               <Fragment>
                 <Switch>
                   <Route path="/movies/:id" component={OneMovie} />
+                  <Route path="/moviesgraphql/:id" component={OneMovieGraphQL} />
                   {/* <Route path="/movies/:id">
                 <Movie />
               </Route> */}
@@ -116,11 +122,16 @@ export default class App extends Component {
                   <Route exact path="/genres">
                     <Genres />
                   </Route>
+
+                  <Route exact path="/graphql">
+                    <GraphQL />
+                  </Route>
+
                   {/* Both syntax ok <Route [] /> or <Route></Route> */}
 
                   <Route path="/admin/movie/:id" component={(props) => (
-                    // to pass props and jwt token 
-                    <EditMovie {...props} jwt={this.state.jwt} />
+                    // to pass props and jwt token  (nts - props referring to those in this file?)
+                    <EditMovie {...props} jwt={this.state.jwt} /> 
                   )}
                   />
                   <Route path="/admin" component={(props) => (
